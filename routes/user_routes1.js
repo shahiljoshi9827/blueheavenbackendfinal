@@ -1,0 +1,40 @@
+var user=require('../models/user_model');
+var express=require('express');
+var router= express.Router();
+router.get('/',function(req,res,next){
+    user.getalluser(function(err,rows){
+        if(err)
+        {
+            res.json(err);
+        }
+        else
+        {
+            res.json(rows);
+        }
+    });
+});
+router.get('/:user_email_id',function(req,res,next){
+    user.getalluserbyid(req.params.user_email_id,function(err,rows){
+        if(err)
+        {
+            res.json(err);
+        }
+        else
+        {
+            res.json(rows);
+        }
+    });
+});
+router.post('',function(req,res,next){
+    user.login(req.body,function(err,rows){
+        if(err)
+        {
+            res.json(err);
+        }
+        else
+        {
+            res.json(rows);
+        }
+    });
+});
+module.exports=router;
