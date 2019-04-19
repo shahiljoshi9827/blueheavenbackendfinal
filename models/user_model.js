@@ -18,7 +18,7 @@ var user={
     },
     signup:function(item,callback){
         
-        return db.query("insert into user values(?,?,?,?,?,?,?,?,?,?,?,?)",[item.user_email_id,item.user_name,item.user_mobile_no,item.user_gender,item.user_dob.substring(0,10),item.user_password,item.user_address,"User",item.data_inserted_on,item.data_inserted_by,item.data_updated_on, item.data_updated_by],callback);
+        return db.query("insert into user values(?,?,?,?,?,?,?,?)",[item.user_email_id,item.user_name,item.user_mobile_no,item.user_gender,item.user_dob.substring(0,10),item.user_password,item.user_address,"user"],callback);
     },
     forgetpassword:function(user_email_id,callback){
         return db.query("SELECT user_password FROM user WHERE user_email_id = ?",[user_email_id],callback);

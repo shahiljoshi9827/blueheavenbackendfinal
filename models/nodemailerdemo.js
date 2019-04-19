@@ -15,7 +15,7 @@ var mailOptions = {
   from: 'help.blueheaven@gmail.com',
   to: demo.to,
   subject:demo.subject,
-  message: demo.message
+  text: demo.message
 };
 
 transporter.sendMail(mailOptions, function(error, info){

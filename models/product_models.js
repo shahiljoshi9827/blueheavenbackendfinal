@@ -21,13 +21,13 @@ var product={
              item.product_discription,
              item.product_price,
              item.product_qty,
-             product_id   
+             product_id     
             ],
             callback        
             );
     },
     
-        updateProductwithimage:function(item,filename,callback)
+    updateProductwithimage:function(item,filename,callback)
     {
             return db.query("update product set product_name=?,product_image=?,product_discription=?,product_price=?,product_qty=? where product_id=?",
             [
@@ -41,10 +41,10 @@ var product={
             callback        
             );
     },
-    ProductBrandjoin:function(product_name,callback){
+    ProductBrandjoin:function(brand_name,callback){
         return db.query('select b.*,p.* from brand b,product p where b.brand_id = p.fk_brand_id and b.brand_name=?',
         [
-           product_name 
+            brand_name 
         ],
         callback
     );
@@ -67,8 +67,30 @@ var product={
         }
         console.log(delarr);
         return db.query("delete from product where product_id in (?)",[delarr],callback);
+    },
+    sortbyhighprice:function(callback)
+    {
+        return db.query("select * FROM product ORDER BY product_price desc LIMIT 10",callback);
+    },
+    topproductbyname:function(callback)
+    {
+        return db.query("select *, count(product_name) as attended from product group by product_name order by 2 desc limit 10",callback);
+    },
+    sortbylowprice:function(callback)
+    {
+        return db.query("select * FROM product ORDER BY product_price asc LIMIT 10",callback);
+    },
+    sortingbyrnage:function(item,callback)
+    {
+        return db.query("select * from product where product_price > ? and product_price < ?",[item.start,item.end],callback)
+    },
+    similerproduct:function(brand_id,product_id,callback)
+    {
+        return db.query("select * from product where fk_brand_id=? and product_id NOT IN (?)",[brand_id,product_id],callback)
+    },
+    pastorder:function(fk_email_id,callback)
+    {
+        return db.query("select b.*,d.*,p.* from bill b,bill_details d,product p where b.Bill_id=d.fk_bill_id and d.fk_product_id=p.product_id 	and b.fk_email_id=?",[fk_email_id],callback);
     }
-
-   
 }
 module.exports=product;

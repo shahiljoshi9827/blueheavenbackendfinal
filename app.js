@@ -15,7 +15,33 @@ var joinproduct_update=require('./routes/product_routes1');
 var order=require('./routes/order_routes');
 var feedback=require('./routes/feedback_routes');
 var mailer=require('./routes/demoemailnodemailer');
+var brand=require('./routes/brand_routes');
+var supplier=require('./routes/supplier_routes');
+var ordersupplierstatus=require('./routes/ordersupplier_routes');
+var supplierside=require('./routes/supplierside_routes');
+var supplierside1=require('./routes/supplierside_routes1');
+var supplierup=require('./routes/supplier1_routes');
+var count=require('./routes/count_routes');
+var count1=require('./routes/count_routes1');
+var temp_order=require('./routes/temp_order_routes');
+var temp_order1=require('./routes/temp_order_routes1');
+var topproductbyname=require('./routes/topproductbyname_routes');
+var sortbyhighandrangeprice=require('./routes/sortbyhighpriceproduct_routes');
+var sortbylowprice=require('./routes/sortbylowpriceproduct_routes');
+var payment=require('./routes/payment_routes');
+var CheckRepeatProduct=require('./routes/checkrepeatproduct_routes');
+var mainorder=require('./routes/mainorder_routes');
+var addorder=require('./routes/mainorder_routes1');
+var bill=require('./routes/bill_routes');
+var addbill=require('./routes/bill_routes1');
+var billdetails=require('./routes/bill_routes_details');
+var confirmorder=require('./routes/confirmation_routes');
+var wishlist=require('./routes/wishlist_routes');
+var search=require('./routes/search_routes');
 var app = express();
+var similerproduct=require('./routes/product_routes2');
+var trackorder=require('./routes/trackorder_routes');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -40,9 +66,32 @@ app.use('/productjoin_update',joinproduct_update);
 app.use('/order',order);
 app.use('/feedback',feedback);
 app.use('/mail',mailer);
-
-
-// catch 404 and forward to error handler
+app.use('/brand',brand);
+app.use('/supplier',supplier);
+app.use('/ordersupplierstatus',ordersupplierstatus);
+app.use('/supplierside',supplierside);
+app.use('/suppliersidebyid',supplierside1);
+app.use('/supplierup',supplierup);
+app.use('/count',count);
+app.use('/count1',count1);
+app.use('/temp_order',temp_order);
+app.use('/temp_order_deleteall',temp_order1);
+app.use('/topproductbyname',topproductbyname);
+app.use('/sortbyhighandrangeprice',sortbyhighandrangeprice);
+app.use('/sortbylowprice',sortbylowprice);
+app.use('/addpayment',payment);
+app.use('/CheckRepeatProduct',CheckRepeatProduct);
+app.use('/mainorder',mainorder);
+app.use('/addorder',addorder);
+app.use('/bill',bill);
+app.use('/addbill',addbill);
+app.use('/billdetails',billdetails);
+app.use('/confirmorder',confirmorder);
+app.use('/wishlist',wishlist);
+app.use('/search',search);
+app.use('/similerproduct',similerproduct);
+app.use('/trackorder',trackorder);
+  // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
